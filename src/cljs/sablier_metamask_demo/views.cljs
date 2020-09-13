@@ -1,19 +1,28 @@
 (ns sablier-metamask-demo.views
   (:require
    [re-frame.core :as re-frame]
-   [sablier-metamask-demo.subs :as subs]
-   ))
+   [sablier-metamask-demo.subs :as subs]))
 
+
+(defn ethereum-panel []
+  (let [ethereum-present? (re-frame/subscribe [::subs/ethereum-present?])]
+    (if @ethereum-present?
+      [:div
+       [:h1 (str "Ethereum is present.")]
+       [:p "Congratulations. No need to install "
+        [:a {:href "https://metamask.io/" :target "_blank"} "MetaMask"]]]
+       ;; Missing ethereum
+      [:div [:h1 "Ethereum is missing."]
+       [:p "You need to install " [:a {:href "https://metamask.io/" :target "_blank"} "MetaMask"]]])))
 
 ;; home
 
 (defn home-panel []
   (let [name (re-frame/subscribe [::subs/name])]
     [:div
-     [:h1 (str "Hello from " @name ". This is the Home Page.")]
-
+     [:h1 (str "Hello from " @name "...")]
      [:img {:src "https://i.giphy.com/media/14cAD9mBjofP5m/giphy.webp" :alt "Howdy"}]
-
+     [ethereum-panel]
      [:div
       [:a {:href "#/about"}
        "go to About Page"]]]))

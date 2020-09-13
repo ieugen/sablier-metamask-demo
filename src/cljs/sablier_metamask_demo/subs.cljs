@@ -11,3 +11,9 @@
  ::active-panel
  (fn [db _]
    (:active-panel db)))
+
+
+(re-frame/reg-sub
+ ::ethereum-present?
+ (fn [db]
+   (:ethereum-present? db)))
