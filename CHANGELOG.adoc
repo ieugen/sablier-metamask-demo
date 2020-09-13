@@ -1,0 +1,15 @@
+= Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+This project does NOT adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+== [Unreleased]
+
+=== Added
+
+* Started a re-frame app using template https://github.com/day8/re-frame-template
+* Added a CHANGELOG file from the guide https://keepachangelog.com/en/1.0.0/
+* Added Developer guide to docs.
+

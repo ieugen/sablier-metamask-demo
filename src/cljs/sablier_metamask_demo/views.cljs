@@ -12,11 +12,11 @@
     [:div
      [:h1 (str "Hello from " @name ". This is the Home Page.")]
 
+     [:img {:src "https://i.giphy.com/media/14cAD9mBjofP5m/giphy.webp" :alt "Howdy"}]
+
      [:div
       [:a {:href "#/about"}
-       "go to About Page"]]
-     ]))
-
+       "go to About Page"]]]))
 
 ;; about
 

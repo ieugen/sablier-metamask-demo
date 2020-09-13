@@ -1,0 +1,10 @@
+= ClojureScript demo for using https://sablier.finance/[Sablier] with web3
+:keywords: crypto, crypto currency, clojurescript, ethereum, metamask, multis, re-frame, sablier, shadow-cljs
+
+This code was written as a test for https://multis.co/[Multis].
+
+See initial requirements here link:docs/multis-requirements.pdf[].
+
+See link:docs/DeveloperGuide.md[Developer Guide].
+
+We keep a changelog here link:CHANGELOG.adoc[]
