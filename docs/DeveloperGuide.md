@@ -252,3 +252,7 @@ Always inspect the `resources/public/js/compiled` directory prior to deploying t
 `lein` alias in this project after `lein watch` will, at the very least, run `lein clean`, which
 deletes this generated directory. Further, running `lein watch` will generate many, much larger
 development versions of the files in this directory.
+
+## To publish
+
+Run the `./bin/publish-app.sh` script. It will stash all changes, lein clean release and publish the changes to remote `gh-pages`.
