@@ -11,7 +11,7 @@
                  [clj-commons/secretary "1.2.4"]]
 
   :plugins [[lein-shadow "0.2.2"]
-            
+
             [lein-shell "0.5.0"]]
 
   :min-lein-version "2.9.0"
@@ -25,7 +25,7 @@
 
 
   :shadow-cljs {:nrepl {:port 8777}
-                
+
                 :builds {:app {:target :browser
                                :output-dir "resources/public/js/compiled"
                                :asset-path "/js/compiled"
@@ -39,8 +39,7 @@
                                           {day8.re-frame.tracing day8.re-frame.tracing-stubs}}}
 
                                :devtools {:http-root "resources/public"
-                                          :http-port 8280
-                                          }}
+                                          :http-port 8280}}
                          :browser-test
                          {:target :browser-test
                           :ns-regexp "-test$"
@@ -53,14 +52,14 @@
                          {:target :karma
                           :ns-regexp "-test$"
                           :output-to "target/karma-test.js"}}}
-  
+
   :shell {:commands {"karma" {:windows         ["cmd" "/c" "karma"]
                               :default-command "karma"}
                      "open"  {:windows         ["cmd" "/c" "start"]
                               :macosx          "open"
                               :linux           "xdg-open"}}}
 
-  :aliases {"dev"          ["do" 
+  :aliases {"dev"          ["do"
                             ["shell" "echo" "\"DEPRECATED: Please use lein watch instead.\""]
                             ["watch"]]
             "watch"        ["with-profile" "dev" "do"
@@ -87,11 +86,10 @@
   :profiles
   {:dev
    {:dependencies [[binaryage/devtools "1.0.2"]
+                   [cider/cider-nrepl "0.23.0"]
                    [day8.re-frame/re-frame-10x "0.7.0"]]
     :source-paths ["dev"]}
 
-   :prod {}
-   
-}
+   :prod {}}
 
   :prep-tasks [])

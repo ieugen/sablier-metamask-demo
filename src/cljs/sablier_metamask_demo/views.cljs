@@ -5,8 +5,8 @@
 
 
 (defn ethereum-panel []
-  (let [ethereum-present? (re-frame/subscribe [::subs/ethereum-present?])]
-    (if @ethereum-present?
+  (let [web3-enabled? (re-frame/subscribe [::subs/web3-enabled?])]
+    (if @web3-enabled?
       [:div
        [:h1 (str "Ethereum is present.")]
        [:p "Congratulations. No need to install "

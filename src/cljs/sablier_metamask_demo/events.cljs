@@ -10,9 +10,9 @@
             db/default-db))
 
 (re-frame/reg-event-db
- ::check-ethereum
+ ::check-web3
  (fn-traced [db [_ js-window]]
-            (assoc db :ethereum-present? (exists? (.-ethereum js-window)))))
+            (assoc db :web3-enabled? (exists? (.-ethereum js-window)))))
 
 (re-frame/reg-event-db
  ::set-active-panel

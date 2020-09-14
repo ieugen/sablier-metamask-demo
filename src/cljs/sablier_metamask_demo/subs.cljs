@@ -14,6 +14,6 @@
 
 
 (re-frame/reg-sub
- ::ethereum-present?
+ ::web3-enabled?
  (fn [db]
-   (:ethereum-present? db)))
+   (:web3-enabled? db)))
