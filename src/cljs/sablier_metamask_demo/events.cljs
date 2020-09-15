@@ -11,8 +11,10 @@
 
 (re-frame/reg-event-db
  ::check-web3
- (fn-traced [db [_ js-window]]
-            (assoc db :web3-enabled? (exists? (.-ethereum js-window)))))
+ (fn-traced [db [_ ^js js-window]]
+            (let [web3-enabled (exists? (.-ethereum js-window))]
+              (merge db {:web3-enabled? web3-enabled
+                         :web3-tested? true}))))
 
 (re-frame/reg-event-db
  ::set-active-panel
@@ -23,4 +25,4 @@
 
   (exists? (.-ethereum js/window)))
 
-  0
+0

@@ -5,8 +5,7 @@
    [sablier-metamask-demo.events :as events]
    [sablier-metamask-demo.routes :as routes]
    [sablier-metamask-demo.views :as views]
-   [sablier-metamask-demo.config :as config]
-   [sablier-metamask-demo.ethers :as eth]))
+   [sablier-metamask-demo.config :as config]))
 
 
 (defn dev-setup []
@@ -22,13 +21,12 @@
 (defn init []
   (routes/app-routes)
   (re-frame/dispatch-sync [::events/initialize-db])
-  (re-frame/dispatch [::events/check-web3 js/window])
   (dev-setup)
   (mount-root))
 
 
 (comment
 
-  (println "Hello nurse")
+  (println "Hello nurse 2")
 
   0)

@@ -1,19 +1,33 @@
 (ns sablier-metamask-demo.views
   (:require
    [re-frame.core :as re-frame]
-   [sablier-metamask-demo.subs :as subs]))
+   [sablier-metamask-demo.subs :as subs]
+   [sablier-metamask-demo.events :as events]))
 
+(defn meta-mask-link [] [:a {:href "https://metamask.io/" :target "_blank"} "MetaMask"])
 
-(defn ethereum-panel []
+(defn check-ethereum-panel []
+  [:div
+   [:p "Before we go, we need to check if you have MetaMask browser extension installed"]
+   [:button {:type "button"
+             :id "check-web3-btn"
+             :on-click #(re-frame/dispatch [::events/check-web3 js/window])} "Check MetaMask"]])  ;; <---
+
+(defn ethereum-installed-panel []
   (let [web3-enabled? (re-frame/subscribe [::subs/web3-enabled?])]
     (if @web3-enabled?
       [:div
        [:h1 (str "Ethereum is present.")]
-       [:p "Congratulations. No need to install "
-        [:a {:href "https://metamask.io/" :target "_blank"} "MetaMask"]]]
-       ;; Missing ethereum
+       [:p "Congratulations. No need to install " [meta-mask-link]]]
+ ;; Missing ethereum
       [:div [:h1 "Ethereum is missing."]
-       [:p "You need to install " [:a {:href "https://metamask.io/" :target "_blank"} "MetaMask"]]])))
+       [:p "You need to install " [meta-mask-link]]])))
+
+(defn ethereum-panel []
+  (let [web3-tested? (re-frame/subscribe [::subs/web3-tested?])]
+    (if @web3-tested?
+      [ethereum-installed-panel]
+      [check-ethereum-panel])))
 
 ;; home
 
@@ -22,10 +36,12 @@
     [:div
      [:h1 (str "Hello from " @name "...")]
      [:img {:src "https://i.giphy.com/media/14cAD9mBjofP5m/giphy.webp" :alt "Howdy"}]
-     [ethereum-panel]
-     [:div
-      [:a {:href "#/about"}
-       "go to About Page"]]]))
+
+     [:p "This is a simple app that will allow you to connect to your "
+      [meta-mask-link] " account and transfer some money to an address you chose"]
+     [:p "(Spoiler alert: it will be mine. Always :D)."]
+     [:p "So trust the app !"]
+     [ethereum-panel]]))
 
 ;; about
 
