@@ -1,6 +1,7 @@
 (ns sablier-metamask-demo.views
   (:require
    [re-frame.core :as re-frame]
+   [reagent.core :as r]
    [sablier-metamask-demo.subs :as subs]
    [sablier-metamask-demo.events :as events]))
 
@@ -29,14 +30,24 @@
       [ethereum-installed-panel]
       [check-ethereum-panel])))
 
-;; home
+(defn howdy-partner []
+  (let [!ref (atom nil)]
+    (r/create-class
+     {:display-name "howdy-partner"
+      :reagent-render (fn []
+                        [:div
+                         [:x-gif {:ref (fn [com] (reset! !ref com))
+                                  :src "https://media.giphy.com/media/14cAD9mBjofP5m/giphy.gif"
+                                  :alt (str "Howdy ")
+                                  "n-times" 1}]
+                         [:button {:on-click (fn [_] (.removeAttribute @!ref "stopped") )} "Howdy again"]])})))
 
+;; home
 (defn home-panel []
   (let [name (re-frame/subscribe [::subs/name])]
     [:div
      [:h1 (str "Hello from " @name "...")]
-     [:img {:src "https://i.giphy.com/media/14cAD9mBjofP5m/giphy.webp" :alt "Howdy"}]
-
+     [howdy-partner]
      [:p "This is a simple app that will allow you to connect to your "
       [meta-mask-link] " account and transfer some money to an address you chose"]
      [:p "(Spoiler alert: it will be mine. Always :D)."]
